@@ -81,6 +81,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   condition = true;
                   //data = "smile face";
                   stringdata = "smile face";
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Smiling Face!'),
+                      action: SnackBarAction(
+                        label: "undo",
+                        textColor: Colors.orange,
+                        onPressed: () {
+                          setState(() {
+                            condition = false;
+                            stringdata = "neutral face";
+                          });
+                        },
+                      ),
+                    ),
+                  );
                   setState(() {});
                 },
               )
@@ -89,6 +104,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         //test commit
         FlatButton(
           onPressed: (){
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('undo'),
+                duration: Duration(seconds: 1),
+                ),
+            );
             setState(() {
               condition = false;
               stringdata = "neutral face";
@@ -96,6 +117,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           },
           child: Icon(Icons.refresh, size: 50,),
         ),
+
       ],
     );
   }
